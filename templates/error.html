@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Go ASCII Art</title>
+    <link href="/assets/css/styles.css" rel="stylesheet">
+</head>
+<body class="error-body">
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">Go ASCII Art</a>
+        </div>
+    </nav>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
+
+    <main class="main-container">
+        <div class="error-card">
+            <div class="error-image">
+                <img src="/assets/GoError.gif" alt="Error animation">
+            </div>
+            <div class="error-code">{{.Code}}</div>
+            <p class="error-message">{{.ErrorMsg}}</p>
+            <a href="/" class="btn-secondary" style="display: inline-block; text-align: center;">Return Home</a>
+        </div>
+    </main>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-theme');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            const isLight = body.classList.contains('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeToggle.textContent = isLight ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>

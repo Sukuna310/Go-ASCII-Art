@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go ASCII Art Generator</title>
+    <link href="/assets/css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/">Go ASCII Art</a>
+        </div>
+    </nav>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
+
+    <main class="main-container">
+        <div class="hero-section">
+            <h1 class="hero-title">Transform Text into Art</h1>
+            <p class="hero-subtitle">Enter your text and choose a style to generate stunning ASCII art</p>
+        </div>
+
+        <section class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot dot-red"></div>
+                <div class="dot dot-yellow"></div>
+                <div class="dot dot-green"></div>
+                <span class="terminal-title">ascii_gen.sh</span>
+            </div>
+            <div class="terminal-body">
+                <form action="/ascii-art" method="POST">
+                    <div class="form-group">
+                        <label for="input-text" class="form-label">~/input_text</label>
+                        <textarea
+                            id="input-text"
+                            name="input-text"
+                            class="terminal-input"
+                            rows="6"
+                            placeholder="Type your message here..."
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="banner" class="form-label">~/style_selection</label>
+                        <select id="banner" name="banner" class="banner-select">
+                            <option value="standard" selected>Standard</option>
+                            <option value="shadow">Shadow</option>
+                            <option value="thinkertoy">Thinkertoy</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-generate">RUN GENERATOR</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'light') {
+            body.classList.add('light-theme');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            const isLight = body.classList.contains('light-theme');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeToggle.textContent = isLight ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>

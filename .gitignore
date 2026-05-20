@@ -1,0 +1,16 @@
+.DS_Store
+go.mod
+go.sum
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+.env
+.env.local
+.env.development
+.env.test
+.env.production
