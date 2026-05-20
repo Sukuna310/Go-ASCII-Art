@@ -14,8 +14,8 @@ type customMux struct {
 func (m *customMux) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Check if the route is registered
 	for p, handler := range map[string]http.Handler{
-		"/ascii-art": http.HandlerFunc(server.ResultHandler),
-		"/":          http.HandlerFunc(server.MainHandler),
+		"/Go-ASCII-Art": http.HandlerFunc(server.ResultHandler),
+		"/":             http.HandlerFunc(server.MainHandler),
 	} {
 		if r.URL.Path == p {
 			handler.ServeHTTP(w, r)
